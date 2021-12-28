@@ -27,13 +27,15 @@ jobs:
             USER_NAME : ${{ secrets.USER_NAME  }}
             
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+           echo "hello world"
+           
+       #   echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+         # ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           
             #Now we have got the access of EC2 and we will start the deploy .
-            cd /home/ec2-user/helloworld &&
-            git checkout master &&
-            git fetch --all &&
-            git reset --hard origin/master &&
-            git pull origin master &&
+           # cd /home/ec2-user/helloworld &&
+          #  git checkout master &&
+          #  git fetch --all &&
+          #  git reset --hard origin/master &&
+          #  git pull origin master &&
             
