@@ -1,31 +1,29 @@
-name: CI/CD counter app
+name: Laravel
 
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-#First we will see the application build or not , then we will deploy in EC2
-  build:
+  laravel-tests:
+
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
-    
-    
-
-  Deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v2 
-      - name: Deploy in EC2
-        env:
-            PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-            HOSTNAME : ${{ secrets.HOSTNAME  }}
-            USER_NAME : ${{ secrets.USER_NAME  }}
-            
-        run: |
-          echo "$PRIVATE_KEY" > private_key && sudo chmod 600 private_key 
-          ssh -T -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME}
+    - name: Update Dependencies
+      run: composer update
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Directory Permissions
+      run: chmod -R 777 storage bootstrap/cache
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: 'mkdir test'
+        
