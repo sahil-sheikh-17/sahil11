@@ -19,5 +19,9 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: 'mkdir test'
+        script: |
+          'mkdir test1'
+          'cd test1'
+          'sudo nano sahil.txt'
+          '
         
