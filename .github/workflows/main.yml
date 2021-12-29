@@ -28,6 +28,4 @@ jobs:
             
         run: |
           echo "$PRIVATE_KEY" > private_key && sudo chmod 600 private_key 
-          ssh -T -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
-          
-            
+          ssh -T -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME}
