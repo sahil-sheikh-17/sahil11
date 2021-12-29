@@ -21,5 +21,3 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           'mkdir test1'
-          'cd test1'
-          'sudo nano sahil.txt'
