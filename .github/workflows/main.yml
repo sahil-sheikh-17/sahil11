@@ -23,5 +23,3 @@ jobs:
           'mkdir test1'
           'cd test1'
           'sudo nano sahil.txt'
-          '
-        
