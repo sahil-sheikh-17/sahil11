@@ -20,7 +20,19 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: | 
-          mkdir test4
-          cd test4
-          ls
+          mkdir test
 
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        
+      - name: building jar file
+        run: |
+          javac HelloWorld/Main.java
+          java -cp . HelloWorld.Main
+          jar cfme Main.jar Manifest.txt HelloWorld.Main HelloWorld/Main.class
+          ls  
