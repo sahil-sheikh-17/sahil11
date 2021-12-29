@@ -20,6 +20,6 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: | 
-          'mkdir test2'
-          'cd test2'
-          'sudo sahil.txt'
+          mkdir test2
+          cd test2
+
