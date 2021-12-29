@@ -27,8 +27,8 @@ jobs:
             USER_NAME : ${{ secrets.USER_NAME  }}
             
         run: |
-          echo "$PRIVATE_KEY" > private_key && sudo chmod 400 private_key /bin/bash
-          ssh -T -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} /bin/bash
+          echo "$PRIVATE_KEY" > private_key && sudo chmod 400 private_key 
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
           
             #Now we have got the access of EC2 and we will start the deploy .
             cd /home/ec2-user/helloworld &&
